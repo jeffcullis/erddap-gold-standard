@@ -5,6 +5,12 @@ There is an `erddap_utils.sh` shell script that can be sourced to give some shor
 
 ## Setup
 
+Start up ERDDAP in Docker sa usual:
+
+```
+sudo docker-compose up -d
+```
+
 Export the ERDDAP URL that you are working with, or edit this value in the script:
 
 `export ERDDAP_URL=http://127.0.0.1:8080/erddap`
@@ -24,6 +30,19 @@ erddap_chown_datasets         erddap_dir                    erddap_generate_data
 ```
 
 If you would like these functions available on login, add the line `source /path/to/erddap_cmds.sh` to your `~/.bashrc` file.
+
+If you would like to see the function definition, use the bash `type` command. For instance:
+
+```
+$ type erddap_restart
+erddap_restart is a function
+erddap_restart () 
+{ 
+    pushd $ERDDAP_DIR;
+    sudo docker restart erddap_gold_standard;
+    popd
+}
+```
 
 ## Show exported variables
 
